@@ -27,7 +27,7 @@ while message.lower().strip() != "q":
         else:
             print('Received from server: ' + str(data))
 
-
         message = input('-> ')
+        
 print("closing socket")
 s.close()
