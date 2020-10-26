@@ -1,7 +1,7 @@
 import socket
 import struct
 
-HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
+HOST = socket.gethostname()  # Standard loopback interface address (localhost)
 multicast_group = '224.3.29.71'
 PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
 server_address = (HOST, PORT)
