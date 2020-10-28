@@ -1,5 +1,6 @@
 import socket
 import struct
+import vectorclock
 
 HOST = socket.gethostname()  # Standard loopback interface address (localhost)
 multicast_group = '224.3.29.71'
