@@ -14,7 +14,7 @@ group = socket.inet_aton(multicast_group)
 mreq = struct.pack('4sL', group, socket.INADDR_ANY)
 s.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
 
-# vClock = vectorclock.VectorClock
+vClock = vectorclock.VectorClock
 clients = []
 
 print("Server Started")
