@@ -14,7 +14,7 @@ group = socket.inet_aton(multicast_group)
 mreq = struct.pack('4sL', group, socket.INADDR_ANY)
 s.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
 
-vClock = vectorclock.VectorClock
+# vClock = vectorclock.VectorClock
 clients = []
 
 print("Server Started")
@@ -23,9 +23,11 @@ while True:
     print("waiting")
     data, addr = s.recvfrom(1024)
     if addr not in clients:
+        print("recieved new address")
         newEntry = vectorclock.VectorClock
-        clock = vClock.merge(vClock.clock, newEntry.clock)
-    
-    print("recieved")
+        newEntry.generate(newEntry, 1)
+        vClock.merge(vClock, vClock.clock, newEntry.clock)
+        
+        clients.append(addr)
     s.sendto(data, addr)
     print("sent response")

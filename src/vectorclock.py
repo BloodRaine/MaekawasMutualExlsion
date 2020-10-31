@@ -18,12 +18,12 @@ class VectorClock:
     def is_concurrent(a, b):
         return (a != b) and self.compare(a, b) == 0
 
-    def increment(clock, index):
+    def increment(self, clock, index):
         self.clock[:index] + (self.clock[index] + 1,) + self.clock[index+1:]
 
-    def merge(a, b):
-        return tuple(map(max, zip(a, b)))
+    def merge(self, a, b):
+        self.clock = tuple(map(max, zip(a, b)))
 
-VC = VectorClock
-VC.generate(2)
-print(VC.clock)
+# VC = VectorClock
+# VC.generate(2)
+# print(VC.clock)
