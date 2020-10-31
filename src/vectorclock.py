@@ -1,10 +1,10 @@
-
-
 class VectorClock:
-    def generate(self, n):
-        return (0,) * n
+    clock = ()
 
-    def compare(self, a, b):
+    def generate(self, n):
+        self.clock = (0,) * n
+
+    def compare(a, b):
         gt = False
         lt = False
 
@@ -15,11 +15,15 @@ class VectorClock:
                 break
         return int(gt) - int(lt)
 
-    def is_concurrent(self, a, b):
+    def is_concurrent(a, b):
         return (a != b) and self.compare(a, b) == 0
 
-    def increment(self, clock, index):
-        return clock[:index] + (clock[index] + 1,) + clock[index+1:]
+    def increment(clock, index):
+        self.clock[:index] + (self.clock[index] + 1,) + self.clock[index+1:]
 
-    def merge(self, a, b):
+    def merge(a, b):
         return tuple(map(max, zip(a, b)))
+
+VC = VectorClock
+VC.generate(2)
+print(VC.clock)

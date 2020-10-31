@@ -21,7 +21,7 @@ while message.lower().strip() != "q":
             data, address = s.recvfrom(1024)
         except socket.timeout:
             print("Timeout")
-            exit(0)
+            break
         else:
             print('Received from server: ' + str(data))
 
